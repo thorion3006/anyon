@@ -9,4 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const DEFAULT_LOCALE = 'en';
+export const DEFAULT_LOCALE = "en";
+export const START_LOADING = "app/App/START_LOADING";
+export const STOP_LOADING = "app/App/STOP_LOADING";

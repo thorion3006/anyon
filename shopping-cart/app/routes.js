@@ -2,13 +2,13 @@
 // They are all wrapped in the App component, which should contain the navbar etc
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
-import { getAsyncInjectors } from 'utils/asyncInjectors';
+import { getAsyncInjectors } from "utils/asyncInjectors";
 
-const errorLoading = (err) => {
-  console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
+const errorLoading = err => {
+  console.error("Dynamic page loading failed", err); // eslint-disable-line no-console
 };
 
-const loadModule = (cb) => (componentModule) => {
+const loadModule = cb => componentModule => {
   cb(null, componentModule.default);
 };
 
@@ -18,29 +18,53 @@ export default function createRoutes(store) {
 
   return [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          import('containers/HomePage'),
+          import("containers/CartContainer/sagas"),
+          import("containers/CartContainer")
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([sagas, component]) => {
+          injectSagas("CartContainer", sagas.default);
           renderRoute(component);
         });
 
         importModules.catch(errorLoading);
-      },
-    }, {
-      path: '*',
-      name: 'notfound',
+      }
+    },
+    {
+      path: "/products",
+      name: "productsContainer",
       getComponent(nextState, cb) {
-        import('containers/NotFoundPage')
+        const importModules = Promise.all([
+          import("containers/ProductsContainer/reducer"),
+          import("containers/ProductsContainer/sagas"),
+          import("containers/ProductsContainer")
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer("ProductsContainer", reducer.default);
+          injectSagas("ProductsContainer", sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      }
+    },
+    {
+      path: "*",
+      name: "notfound",
+      getComponent(nextState, cb) {
+        import("containers/NotFoundPage")
           .then(loadModule(cb))
           .catch(errorLoading);
-      },
-    },
+      }
+    }
   ];
 }

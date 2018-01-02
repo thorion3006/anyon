@@ -11,19 +11,37 @@
  * the linting exception.
  */
 
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+import { makeSelectLoadingStatus } from "./selectors";
+
+import LoadingIndicator from "components/LoadingIndicator";
+
+class App extends React.PureComponent {
+  // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
+    loading: PropTypes.number.isRequired
   };
 
   render() {
+    const loadingBar = this.props.loading ? <LoadingIndicator /> : null;
+
     return (
-      <div>
+      <div className="container">
+        {loadingBar}
         {React.Children.toArray(this.props.children)}
       </div>
     );
   }
 }
+
+const mapStateToProps = createStructuredSelector({
+  loading: makeSelectLoadingStatus()
+});
+
+export default connect(mapStateToProps)(App);

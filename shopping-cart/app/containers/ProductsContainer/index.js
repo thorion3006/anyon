@@ -53,12 +53,6 @@ export class ProductsContainer extends React.PureComponent {
     this.props.fetchProducts();
   }
 
-  componentWillReceiveProps(newProps) {
-    if (this.props.qty !== newProps.qty) {
-      this.setState({ qty: newProps.qty });
-    }
-  }
-
   render() {
     return (
       <ProductsList
@@ -76,12 +70,12 @@ const mapStateToProps = createStructuredSelector({
   qty: makeSelectQty()
 });
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
     addToCart: product => dispatch(addToCart(product)),
     goToCart: () => dispatch(goToCart())
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

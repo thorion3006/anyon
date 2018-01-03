@@ -83,8 +83,6 @@ export class CartContainer extends React.PureComponent {
     this.props.fetchCart();
   }
 
-  componentWillReceiveProps(newProps) {}
-
   render() {
     return (
       <Cart
@@ -107,7 +105,7 @@ const mapStateToProps = createStructuredSelector({
   grandTotal: makeSelectGrandTotal()
 });
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
     addNewProducts: () => dispatch(addNewProducts()),
@@ -116,6 +114,6 @@ function mapDispatchToProps(dispatch) {
     deleteCartProduct: productCartId =>
       dispatch(deleteCartProduct(productCartId))
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

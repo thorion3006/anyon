@@ -29,21 +29,4 @@ const makeSelectLocationState = () => {
 const makeSelectLoadingStatus = () =>
   createSelector(selectAppDomain, subState => subState.get("loading"));
 
-/**
- * Default selector used by App
- */
-const makeSelectApp = () =>
-  createSelector(
-    selectAppDomain,
-    makeSelectLocationState(),
-    makeSelectLoadingStatus(),
-    (subState, locationState, loadingState) =>
-      Object.assign(subState.toJS(), {
-        location: locationState,
-        loading: loadingState
-      })
-  );
-
-export default makeSelectApp;
-
 export { makeSelectLocationState, makeSelectLoadingStatus };

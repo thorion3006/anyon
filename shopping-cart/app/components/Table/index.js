@@ -1,7 +1,7 @@
 /**
  *
  * Table
- *
+ * Renders the cart product collection in a table, while each row is rendered by TableRow
  */
 
 import React from "react";
@@ -17,7 +17,7 @@ const Table = ({
   onChange,
   mouseEnter,
   mouseLeave,
-  hover
+  hover,
 }) => (
   <table className="responsive-table white bordered highlight centered">
     <thead className="indigo darken-4 white-text">
@@ -47,7 +47,7 @@ Table.propTypes = {
   onChange: PropTypes.func.isRequired,
   mouseEnter: PropTypes.func.isRequired,
   mouseLeave: PropTypes.func.isRequired,
-  hover: PropTypes.string.isRequired
+  hover: PropTypes.string.isRequired,
 };
 
 export default Table;

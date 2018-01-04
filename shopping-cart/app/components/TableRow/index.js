@@ -1,7 +1,7 @@
 /**
  *
  * TableRow
- *
+ * Renders the cart products in a table row
  */
 
 import React from "react";
@@ -18,7 +18,7 @@ const TableRow = ({
   onChange,
   mouseEnter,
   mouseLeave,
-  hover
+  hover,
 }) => {
   return (
     <tr onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} id={cartProduct.id}>
@@ -49,7 +49,7 @@ const TableRow = ({
       <td>
         <StyledI
           className={classNames("material-icons scale-transition", {
-            "scale-out": hover !== cartProduct.id
+            "scale-out": hover !== cartProduct.id,
           })}
           onClick={onClick}
         >
@@ -66,7 +66,7 @@ TableRow.propTypes = {
   onChange: PropTypes.func.isRequired,
   mouseEnter: PropTypes.func.isRequired,
   mouseLeave: PropTypes.func.isRequired,
-  hover: PropTypes.string.isRequired
+  hover: PropTypes.string.isRequired,
 };
 
 export default TableRow;

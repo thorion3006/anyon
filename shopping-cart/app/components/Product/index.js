@@ -1,7 +1,7 @@
 /**
  *
  * Product
- *
+ * Renders each product in a collection
  */
 
 import React from "react";
@@ -48,7 +48,7 @@ Product.propTypes = {
   product: PropTypes.object.isRequired,
   qty: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Product;

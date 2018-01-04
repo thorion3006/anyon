@@ -1,7 +1,7 @@
 /*
  *
  * ProductsContainer
- *
+ * HOC for the products page.
  */
 
 import React from "react";
@@ -28,7 +28,7 @@ export class ProductsContainer extends React.PureComponent {
     goToCart: PropTypes.func.isRequired,
     addToCart: PropTypes.func.isRequired,
     products: PropTypes.arrayOf(PropTypes.object).isRequired,
-    qty: PropTypes.object.isRequired
+    qty: PropTypes.object.isRequired,
   };
 
   onChange(e) {
@@ -67,14 +67,14 @@ export class ProductsContainer extends React.PureComponent {
 
 const mapStateToProps = createStructuredSelector({
   products: makeSelectProducts(),
-  qty: makeSelectQty()
+  qty: makeSelectQty(),
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
     addToCart: product => dispatch(addToCart(product)),
-    goToCart: () => dispatch(goToCart())
+    goToCart: () => dispatch(goToCart()),
   };
 };
 

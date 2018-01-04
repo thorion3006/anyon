@@ -1,11 +1,11 @@
 /**
  *
  * LoadingIndicator
- *
+ * Displays a loading bar when ajax calls are made
  */
 
-import React from 'react';
-import Wrapper from './Wrapper';
+import React from "react";
+import Wrapper from "./Wrapper";
 // import styled from 'styled-components';
 
 const LoadingIndicator = () => (

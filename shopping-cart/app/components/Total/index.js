@@ -1,7 +1,7 @@
 /**
  *
  * Total
- *
+ * Renders the total amount for the cart in a div
  */
 
 import React from "react";
@@ -23,7 +23,7 @@ const Total = ({ netTotal, tax, grandTotal }) => {
             {`${productTax}%`}
             <span className="right">{`${tax[productTax]}\u20AC`}</span>
           </span>
-        </div>
+        </div>,
       );
     }
   }
@@ -51,7 +51,7 @@ const Total = ({ netTotal, tax, grandTotal }) => {
 Total.propTypes = {
   netTotal: PropTypes.string.isRequired,
   tax: PropTypes.object.isRequired,
-  grandTotal: PropTypes.string.isRequired
+  grandTotal: PropTypes.string.isRequired,
 };
 
 export default Total;

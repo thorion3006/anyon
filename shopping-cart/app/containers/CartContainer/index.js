@@ -1,7 +1,7 @@
 /*
  *
  * CartContainer
- *
+ * HOC for the cart products, server calls to add and delete products are made here
  */
 
 import React from "react";
@@ -14,14 +14,14 @@ import {
   makeSelectIsEmpty,
   makeSelectNetTotal,
   makeSelectTax,
-  makeSelectGrandTotal
+  makeSelectGrandTotal,
 } from "./selectors";
 import {
   fetchCart,
   addNewProducts,
   clearCart,
   updateCartProduct,
-  deleteCartProduct
+  deleteCartProduct,
 } from "./actions";
 
 import Cart from "components/Cart";
@@ -47,7 +47,7 @@ export class CartContainer extends React.PureComponent {
     addNewProducts: PropTypes.func.isRequired,
     clearCart: PropTypes.func.isRequired,
     updateCartProduct: PropTypes.func.isRequired,
-    deleteCartProduct: PropTypes.func.isRequired
+    deleteCartProduct: PropTypes.func.isRequired,
   };
 
   mouseEnter(event) {
@@ -70,7 +70,7 @@ export class CartContainer extends React.PureComponent {
     const value = event.target.value;
     const { cart, updateCartProduct } = this.props;
     const updatedProduct = cart.find(
-      cartProduct => cartProduct.id === productCartId
+      cartProduct => cartProduct.id === productCartId,
     );
     if (updatedProduct[productProperty] === value) {
       return;
@@ -102,7 +102,7 @@ const mapStateToProps = createStructuredSelector({
   isEmpty: makeSelectIsEmpty(),
   netTotal: makeSelectNetTotal(),
   tax: makeSelectTax(),
-  grandTotal: makeSelectGrandTotal()
+  grandTotal: makeSelectGrandTotal(),
 });
 
 const mapDispatchToProps = dispatch => {
@@ -112,7 +112,7 @@ const mapDispatchToProps = dispatch => {
     clearCart: () => dispatch(clearCart()),
     updateCartProduct: cartProduct => dispatch(updateCartProduct(cartProduct)),
     deleteCartProduct: productCartId =>
-      dispatch(deleteCartProduct(productCartId))
+      dispatch(deleteCartProduct(productCartId)),
   };
 };
 

@@ -1,18 +1,18 @@
 /**
  *
- * Cart
+ * Cart - Parent component for Cart Table and Total components.
+ * It shows a empty cart div if the cart is empty, otherwise renders Table and Total.
  *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-// import styled from 'styled-components';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import StyledH1 from "../StyledH1";
-import StyledButton from "../StyledButton";
-import Table from "../Table";
-import Total from "../Total";
+import StyledH1 from '../StyledH1';
+import StyledButton from '../StyledButton';
+import Table from '../Table';
+import Total from '../Total';
 
 const Cart = ({
   isEmpty,
@@ -29,14 +29,14 @@ const Cart = ({
   hover
 }) => {
   const heading = [
-    "#",
-    "Name",
-    "Description",
-    "comments",
-    "Price",
-    "Tax",
-    "Total Item",
-    ""
+    '#',
+    'Name',
+    'Description',
+    'comments',
+    'Price',
+    'Tax',
+    'Total Item',
+    ''
   ];
   const tableProps = {
     heading,
@@ -54,8 +54,10 @@ const Cart = ({
     </div>
   ) : (
     <div>
-      <Table {...tableProps} />
-      <Total {...totalProps} />
+      <ErrorBoundary>
+        <Table {...tableProps} />
+        <Total {...totalProps} />
+      </ErrorBoundary>
     </div>
   );
   return (
@@ -72,7 +74,7 @@ const Cart = ({
       </StyledButton>
       <StyledButton
         className={classNames(
-          "waves-effect waves-light btn indigo accent-2 col s3",
+          'waves-effect waves-light btn indigo accent-2 col s3',
           { pulse: isEmpty }
         )}
         type="button"

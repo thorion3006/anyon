@@ -1,7 +1,7 @@
 /**
  *
  * Products
- *
+ * Renders a product collection and calls Product for individual product render.
  */
 
 import React from "react";
@@ -26,17 +26,19 @@ const ProductsList = ({ products, qty, goToCart, onChange, onClick }) => {
           Cart
         </StyledButton>
       </div>
-      <ul className="collection">
-        {products.map(product => (
-          <Product
-            key={product.id}
-            product={product}
-            qty={qty[product.id]}
-            onChange={onChange}
-            onClick={onClick}
-          />
-        ))}
-      </ul>
+      <ErrorBoundary>
+        <ul className="collection">
+          {products.map(product => (
+            <Product
+              key={product.id}
+              product={product}
+              qty={qty[product.id]}
+              onChange={onChange}
+              onClick={onClick}
+            />
+          ))}
+        </ul>
+      </ErrorBoundary>
     </Fragment>
   );
 };
@@ -46,7 +48,7 @@ ProductsList.propTypes = {
   qty: PropTypes.object.isRequired,
   goToCart: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ProductsList;

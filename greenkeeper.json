@@ -1,0 +1,9 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "shopping-cart/package.json"
+      ]
+    }
+  }
+}
